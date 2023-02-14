@@ -70,7 +70,7 @@ date: 02/17/2023
 
 7. Sort `Chromosome_1.txt` etc by decreasing nucleotide position, output to `tmp
 ` folder as `decre_chromosome_1.txt` (total 10 files).
-    * Code: `for i in {1..10}; do sort -k4,4n -r chromosome_${i}.txt > /home/wdeng/HW1/tmp/"decre_chromosome_${i}.txt"; done`
+    * Code: `for i in {1..10}; do sort -k4 -rn chromosome_${i}.txt > /home/wdeng/HW1/tmp/"decre_chromosome_${i}.txt"; done`
 
 ### Teosinte Data
 
