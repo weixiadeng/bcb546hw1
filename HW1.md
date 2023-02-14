@@ -50,16 +50,22 @@ date: 02/17/2023
     * Code: `tail -n +2 snp_position.txt | sort -k3,3V`
     * Code: `tail -n +2 snp_position.txt | sort -k3,3V | awk {'print $3'} | uniq`
 
-2. Subset the maize from `feng` data to produce `maize.txt`.
-    * Code: `grep ZMM fang_et_al_genotypes.txt > maize.txt`
+2. Subset the maize from `feng` data to produce `maize.txt` to `tmp` folder.
+    * Code: `grep ZMM fang_et_al_genotypes.txt > /home/wdeng/HW1/tmp/maize.txt`
 
-3. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, creat `Chromosome_1.txt` etc. at output folder.
-    * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/output/"chromosome_${i}.txt"; done`  
+3. Transpose `maize.txt` to `trans_maize.txt`.
+    * Code: `awk -f transpose.awk maize.txt > trans_maize.txt`
+
+3. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, create `Chromosome_1.txt` etc. at tmp folder.
+    * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_${i}.txt"; done`  
 
 ### Teosinte Data
 
-1. Subset the teosinte from `feng` data to produce `teosinte.txt`.
-    * Code: `grep ZMP fang_et_al_genotypes.txt > teosinte.txt`
+1. Subset the teosinte from `feng` data to produce `teosinte.txt` to `tmp` folder.
+    * Code: `grep ZMP fang_et_al_genotypes.txt > /home/wdeng/HW1/tmp/teosinte.txt`
+
+2. Tranpose `teosinte.txt` to `trans_teosinte.txt`.
+    * Code: `awk -f transpose.awk teosinte.txt > trans_teosinte.txt`
 
 
 
