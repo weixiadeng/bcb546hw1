@@ -59,6 +59,12 @@ date: 02/17/2023
 3. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, create `Chromosome_1.txt` etc. at tmp folder.
     * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_${i}.txt"; done`  
 
+4. Subset `unknown` positions from `snp` data to `tmp` folder.
+    * Code: `awk '$3 == "unknown"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_unknown.txt"`
+
+5. Subset `multiple` positions from `snp` data to `tmp` folder.
+    * Code: `awk '$3 == "multiple"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_multiple.txt"`
+
 ### Teosinte Data
 
 1. Subset the teosinte from `feng` data to produce `teosinte.txt` to `tmp` folder.
