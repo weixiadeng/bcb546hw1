@@ -53,17 +53,20 @@ date: 02/17/2023
 2. Subset the maize from `feng` data to produce `maize.txt` to `tmp` folder.
     * Code: `grep ZMM fang_et_al_genotypes.txt > /home/wdeng/HW1/tmp/maize.txt`
 
-3. Transpose `maize.txt` to `trans_maize.txt`.
-    * Code: `awk -f transpose.awk maize.txt > trans_maize.txt`
+3. Transpose `maize.txt`, then sort its transpose by `SNP_ID`, save as `trans_sort_maize.txt`.
+    * Code: `awk -f transpose.awk maize.txt | sort -k1 > trans_sort_maize.txt`
 
-3. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, create `Chromosome_1.txt` etc. at tmp folder.
+4. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, create `Chromosome_1.txt` etc. at tmp folder.
     * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_${i}.txt"; done`  
 
-4. Subset `unknown` positions from `snp` data to `tmp` folder.
+5. Subset `unknown` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "unknown"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_unknown.txt"`
 
-5. Subset `multiple` positions from `snp` data to `tmp` folder.
+6. Subset `multiple` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "multiple"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_multiple.txt"`
+
+7. Sort 10 `Chromosome_1.txt` etc by `SNP_ID`, save as `sort_Chromosome_1.txt` etc.
+    * Code: `for i in {1..10}; do sort -k1 chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_chromosome_${i}.txt"; done`
 
 6. Sort `Chromosome_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_chromosome_1.txt` (total 10 files).
     * Code: `for i in {1..10}; do sort -k4,4n chromosome_${i}.txt > /home/wdeng/HW1/tmp/"incre_chromosome_${i}.txt"; done`
