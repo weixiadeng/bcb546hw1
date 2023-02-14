@@ -65,6 +65,13 @@ date: 02/17/2023
 5. Subset `multiple` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "multiple"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_multiple.txt"`
 
+6. Sort `Chromosome_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_chromosome_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4,4n chromosome_${i}.txt > /home/wdeng/HW1/tmp/"incre_chromosome_${i}.txt"; done`
+
+7. Sort `Chromosome_1.txt` etc by decreasing nucleotide position, output to `tmp
+` folder as `decre_chromosome_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4,4n -r chromosome_${i}.txt > /home/wdeng/HW1/tmp/"decre_chromosome_${i}.txt"; done`
+
 ### Teosinte Data
 
 1. Subset the teosinte from `feng` data to produce `teosinte.txt` to `tmp` folder.
