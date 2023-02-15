@@ -46,6 +46,8 @@ date: 02/17/2023
 
 ### Maize Data
 
+1. The original data files are in `UNIX_Assignment` folder, intermediate files are in `tmp` folder, final output save in `output` folder.
+
 2. Subset the maize from `feng` data to produce `maize.txt` to `tmp` folder.
     * Code: `grep ZMM fang_et_al_genotypes.txt > /home/wdeng/bcb546hw1/tmp/maize.txt`
 
@@ -81,10 +83,25 @@ date: 02/17/2023
 ### Teosinte Data
 
 1. Subset the teosinte from `feng` data to produce `teosinte.txt` to `tmp` folder.
-    * Code: `grep ZMP fang_et_al_genotypes.txt > /home/wdeng/HW1/tmp/teosinte.txt`
+    * Code: `grep ZMP fang_et_al_genotypes.txt > /home/wdeng/bcb546hw1/tmp/teosinte.txt`
 
-2. Tranpose `teosinte.txt` to `trans_teosinte.txt`.
-    * Code: `awk -f transpose.awk teosinte.txt > trans_teosinte.txt`
+2. Add the `fang` data header to the teosinte data, then delete its first three column `Sample_ID`, `JG_OTU`, and `Group`, save as `teosinte_head.txt`.
+    * Code: `cat fang_head.txt teosinte.txt | cut -f1,2,3 --complement > teosinte_head.txt`
 
+3. Transpose `teosinte_head.txt`, save as `trans_teosinte.txt`.
+    * Code: `awk -f transpose.awk teosinte_head.txt > trans_teosinte.txt`
+
+4. Join 10 `chromosome_1.txt` etc with `trans_teosinte.txt` by `SNP_ID` (first column), save as `joined_teosinte_1.txt` etc.
+    * Code: `for i in {1..10}; do join -1 1 -2 1 -t $'\t' chromosome_$i.txt trans_teosinte.txt > joined_teosinte_$i.txt; done`
+
+5. Sort `joined_teosinte_1.txt` etc by increasing nucleotide position, output to `output` folder as `incre_joined_teosinte_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k3,3n joined_teosinte_${i}.txt > /home/wdeng/bcb546hw1/output/incre_joined_teosinte_${i}.txt; done`
+
+6. Sort `joined_teosinte_1.txt` etc by decreasing nucleotide position, then replace missing data `?` by symbol `-`, output to `output` folder as `decre_joined_teosinte_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k3 -rn joined_teosinte_${i}.txt | sed 's/\?/\-/g' > /home/wdeng/bcb546hw1/output/decre_joined_teosinte_${i}.txt; done`
+
+7. Join `chromosome_unknown.txt` and `chromosome_multiple.txt` with `trans_teosinte.txt` by `SNP_ID`, save as `joined_teosinte_unknown.txt` and `joined_teosinte_multiple.txt` to `output` folder.
+    * Code: `join -1 1 -2 1 -t $'\t' chromosome_unknown.txt trans_teosinte.txt > /home/wdeng/bcb546hw1/output/"joined_teosinte_unknown.txt"`
+    * Code: `join -1 1 -2 1 -t $'\t' chromosome_multiple.txt trans_teosinte.txt > /home/wdeng/bcb546hw1/output/"joined_teosinte_multiple.txt"`
 
 
