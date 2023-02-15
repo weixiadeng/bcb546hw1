@@ -65,7 +65,7 @@ date: 02/17/2023
 4. Split `snp` data to 10 txt files by `Chromosome` 1 to 10, create `Chromosome_1.txt` etc. at tmp folder.
     * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_${i}.txt"; done`  
 
-5. Sort 10 `chromosome_1.txt` etc by `SNP_ID`, save as `Sort_SNP_chromosome_1.txt` etc.
+5. Sort 10 `chromosome_1.txt` etc by `SNP_ID`, save as `sort_snp_chromosome_1.txt` etc.
     * Code `for i in {1..10}; do sort -k1,1V chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_${i}.txt"; done`
 
 5. Subset `unknown` positions from `snp` data to `tmp` folder.
