@@ -71,6 +71,12 @@ date: 02/17/2023
 6. Join 10 `sort_snp_chromosome_1.txt` etc with `trans_sort_maize.txt` by `SNP_ID`, save as `joined_1.txt` etc.
     * Code: `for i in {1..10}; do join -1 1 -2 1 -t $'\t' sort_snp_chromosome_$i.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_${i}.txt"; done`
 
+7. Sort `joined_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_joined_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4,4n joined_${i}.txt > /home/wdeng/HW1/tmp/"incre_joined_${i}.txt"; done`
+
+8. Sort `joined_1.txt` etc by decreasing nucleotide position, then replace missing data `?` by symbol `-`, output to `tmp` folder as `decre_joined_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4 -rn joined_${i}.txt | sed 's/\?/\-/g' > /home/wdeng/HW1/tmp/"decre_joined_${i}.txt"; done`
+
 5. Subset `unknown` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "unknown"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_unknown.txt"`
 
@@ -80,7 +86,7 @@ date: 02/17/2023
 7. Sort 10 `Chromosome_1.txt` etc by `SNP_ID`, save as `sort_Chromosome_1.txt` etc.
     * Code: `for i in {1..10}; do sort -k1 chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_chromosome_${i}.txt"; done`
 
-6. Sort `Chromosome_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_chromosome_1.txt` (total 10 files).
+8. Sort `Chromosome_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_chromosome_1.txt` (total 10 files).
     * Code: `for i in {1..10}; do sort -k4,4n chromosome_${i}.txt > /home/wdeng/HW1/tmp/"incre_chromosome_${i}.txt"; done`
 
 7. Sort `Chromosome_1.txt` etc by decreasing nucleotide position, output to `tmp
