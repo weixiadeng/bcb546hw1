@@ -66,7 +66,10 @@ date: 02/17/2023
     * Code: `for i in {1..10}; do awk '$3 == "'$i'"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_${i}.txt"; done`  
 
 5. Sort 10 `chromosome_1.txt` etc by `SNP_ID`, save as `sort_snp_chromosome_1.txt` etc.
-    * Code `for i in {1..10}; do sort -k1,1V chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_${i}.txt"; done`
+    * Code: `for i in {1..10}; do sort -k1,1V chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_${i}.txt"; done`
+
+6. Join 10 `sort_snp_chromosome_1.txt` etc with `trans_sort_maize.txt` by `SNP_ID`, save as `joined_1.txt` etc.
+    * Code: `for i in {1..10}; do join -1 1 -2 1 -t $'\t' sort_snp_chromosome_$i.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_${i}.txt"; done`
 
 5. Subset `unknown` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "unknown"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_unknown.txt"`
