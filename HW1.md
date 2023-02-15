@@ -68,30 +68,31 @@ date: 02/17/2023
 5. Sort 10 `chromosome_1.txt` etc by `SNP_ID`, save as `sort_snp_chromosome_1.txt` etc.
     * Code: `for i in {1..10}; do sort -k1,1V chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_${i}.txt"; done`
 
-6. Join 10 `sort_snp_chromosome_1.txt` etc with `trans_sort_maize.txt` by `SNP_ID`, save as `joined_1.txt` etc.
-    * Code: `for i in {1..10}; do join -1 1 -2 1 -t $'\t' sort_snp_chromosome_$i.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_${i}.txt"; done`
+6. Join 10 `sort_snp_chromosome_1.txt` etc with `trans_sort_maize.txt` by `SNP_ID`, save as `joined_maize_1.txt` etc.
+    * Code: `for i in {1..10}; do join -1 1 -2 1 -t $'\t' sort_snp_chromosome_$i.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_maize_${i}.txt"; done`
 
-7. Sort `joined_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_joined_1.txt` (total 10 files).
-    * Code: `for i in {1..10}; do sort -k4,4n joined_${i}.txt > /home/wdeng/HW1/tmp/"incre_joined_${i}.txt"; done`
+7. Sort `joined_maize_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_joined_maize_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4,4n joined_maize_${i}.txt > /home/wdeng/HW1/tmp/"incre_joined_maize_${i}.txt"; done`
 
-8. Sort `joined_1.txt` etc by decreasing nucleotide position, then replace missing data `?` by symbol `-`, output to `tmp` folder as `decre_joined_1.txt` (total 10 files).
-    * Code: `for i in {1..10}; do sort -k4 -rn joined_${i}.txt | sed 's/\?/\-/g' > /home/wdeng/HW1/tmp/"decre_joined_${i}.txt"; done`
+8. Sort `joined_maize_1.txt` etc by decreasing nucleotide position, then replace missing data `?` by symbol `-`, output to `tmp` folder as `decre_joined_maize_1.txt` (total 10 files).
+    * Code: `for i in {1..10}; do sort -k4 -rn joined_maize_${i}.txt | sed 's/\?/\-/g' > /home/wdeng/HW1/tmp/"decre_joined_maize_${i}.txt"; done`
 
-5. Subset `unknown` positions from `snp` data to `tmp` folder.
+9. Subset `unknown` positions from `snp` data to `tmp` folder, save as `chromosome_unknown.txt`.
     * Code: `awk '$3 == "unknown"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_unknown.txt"`
 
-6. Subset `multiple` positions from `snp` data to `tmp` folder.
+10. Sort the `chromosome_unknown.txt` etc by `SNP_ID`, save as `sort_snp_chromosome_unknown.txt` etc.
+    * Code: `sort -k1,1V chromosome_unknown.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_unknown.txt"`
+
+11. Subset `multiple` positions from `snp` data to `tmp` folder.
     * Code: `awk '$3 == "multiple"' snp_position.txt > /home/wdeng/HW1/tmp/"chromosome_multiple.txt"`
 
-7. Sort 10 `Chromosome_1.txt` etc by `SNP_ID`, save as `sort_Chromosome_1.txt` etc.
-    * Code: `for i in {1..10}; do sort -k1 chromosome_${i}.txt > /home/wdeng/HW1/tmp/"sort_chromosome_${i}.txt"; done`
+12. Sort the `chromosome_multiple.txt` etc by `SNP_ID`, save as `sort_snp_chromosome_multiple.txt` etc.
+    * Code: `sort -k1,1V chromosome_multiple.txt > /home/wdeng/HW1/tmp/"sort_snp_chromosome_multiple.txt"`
 
-8. Sort `Chromosome_1.txt` etc by increasing nucleotide position, output to `tmp` folder as `incre_chromosome_1.txt` (total 10 files).
-    * Code: `for i in {1..10}; do sort -k4,4n chromosome_${i}.txt > /home/wdeng/HW1/tmp/"incre_chromosome_${i}.txt"; done`
+13. Join `sort_snp_chromosome_unknown.txt` and `sort_snp_chromosome_multiple.txt` with `trans_sort_maize.txt` by `SNP_ID`, save as `joined_maize_unknown.txt` and `joined_maize_multiple.txt`
+    * Code: `join -1 1 -2 1 -t $'\t' sort_snp_chromosome_unknown.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_maize_unknown.txt"`
+    * Code: `join -1 1 -2 1 -t $'\t' sort_snp_chromosome_unknown.txt trans_sort_maize.txt > /home/wdeng/HW1/tmp/"joined_maize_multiple.txt"`
 
-7. Sort `Chromosome_1.txt` etc by decreasing nucleotide position, output to `tmp
-` folder as `decre_chromosome_1.txt` (total 10 files).
-    * Code: `for i in {1..10}; do sort -k4 -rn chromosome_${i}.txt > /home/wdeng/HW1/tmp/"decre_chromosome_${i}.txt"; done`
 
 ### Teosinte Data
 
